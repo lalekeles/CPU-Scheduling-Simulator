@@ -64,10 +64,10 @@ void printResult(const SchedulingResult &res) {
 
 void printComparison(const std::vector<SchedulingResult> &results) {
     std::cout << "\n===== KARSILASTIRMA =====\n";
-    std::cout << std::left << std::setw(14) << "Algoritma" << std::setw(14) << "Avg Waiting"
+    std::cout << std::left << std::setw(20) << "Algoritma" << std::setw(14) << "Avg Waiting"
               << std::setw(16) << "Avg Turnaround" << std::setw(14) << "Avg Response" << "\n";
     for (const auto &r : results) {
-        std::cout << std::left << std::setw(14) << r.algorithm << std::fixed
+        std::cout << std::left << std::setw(20) << r.algorithm << std::fixed
                   << std::setprecision(2) << std::setw(14) << r.avgWaiting
                   << std::setw(16) << r.avgTurnaround << std::setw(14) << r.avgResponse << "\n";
     }

@@ -51,7 +51,7 @@ data/sample.txt       Ornek girdi
 |-----|-----------|-------|
 | Kisi 1 | Ana sistem (main.cpp), Process veri yapisi, kullanici girisi, FCFS, entegrasyon | Process yapisi, giris, FCFS, main tamam |
 | Kisi 2 | SJF | Iskelet hazir, yazilacak |
-| Kisi 3 | Round Robin | Iskelet hazir, yazilacak |
+| Kisi 3 | Round Robin | Tamam |
 | Kisi 4 | Priority Scheduling | Iskelet hazir, yazilacak |
 
 ## Diger Uyeler Icin Not

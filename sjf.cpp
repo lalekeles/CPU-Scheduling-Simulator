@@ -1,62 +1,56 @@
+// SJF (Shortest Job First) - Non-preemptive.
+// Mantik arkadasin yazdigi surumden alinmis, ortak SchedulingResult arayuzune uyarlanmistir.
+// Esitlikte: once erken gelen, o da esitse kucuk PID.
 #include "scheduler.h"
 #include <climits>
 
-using namespace std;
+SchedulingResult runSJF(std::vector<Process> procs) {
+    SchedulingResult res;
+    res.algorithm = "SJF";
+    if (procs.empty()) return res;
 
-// Non-preemptive SJF
-// Dönen vector, process'lerin ÇALIŞMA SIRASINA göre dizilmiş halidir.
-vector<Process> runSJF(vector<Process> processes) {
-    int n = processes.size();
-    vector<bool> done(n, false);
-    vector<Process> result;
-    int currentTime = 0;
-    int completed = 0;
+    const int n = static_cast<int>(procs.size());
+    std::vector<bool> done(n, false);
+    int time = 0, completed = 0;
 
     while (completed < n) {
+        // Gelmis ve bitmemis process'ler arasindan en kisa burst'lu olani sec
         int idx = -1;
-
-        // Gelmiş ve bitmemiş process'ler arasından en kısa burst'lüyü seç
-        for (int i = 0; i < n; i++) {
-            if (done[i] || processes[i].arrivalTime > currentTime) continue;
-
-            if (idx == -1) {
+        for (int i = 0; i < n; ++i) {
+            if (done[i] || procs[i].arrival > time) continue;
+            if (idx == -1 ||
+                procs[i].burst < procs[idx].burst ||
+                (procs[i].burst == procs[idx].burst &&
+                 (procs[i].arrival < procs[idx].arrival ||
+                  (procs[i].arrival == procs[idx].arrival && procs[i].pid < procs[idx].pid))))
                 idx = i;
-            } else if (processes[i].burstTime < processes[idx].burstTime) {
-                idx = i;
-            } else if (processes[i].burstTime == processes[idx].burstTime) {
-                // Eşitlikte: önce erken gelen, o da eşitse küçük pid
-                if (processes[i].arrivalTime < processes[idx].arrivalTime) {
-                    idx = i;
-                } else if (processes[i].arrivalTime == processes[idx].arrivalTime &&
-                           processes[i].pid < processes[idx].pid) {
-                    idx = i;
-                }
-            }
         }
 
-        // Hazır process yok: CPU IDLE, zamanı bir sonraki geliş anına ilerlet
+        // Hazir process yok: CPU bos, bir sonraki gelise atla
         if (idx == -1) {
             int nextArrival = INT_MAX;
-            for (int i = 0; i < n; i++) {
-                if (!done[i] && processes[i].arrivalTime < nextArrival) {
-                    nextArrival = processes[i].arrivalTime;
-                }
-            }
-            currentTime = nextArrival;
+            for (int i = 0; i < n; ++i)
+                if (!done[i] && procs[i].arrival < nextArrival) nextArrival = procs[i].arrival;
+            res.gantt.push_back({-1, time, nextArrival});
+            time = nextArrival;
             continue;
         }
 
-        // Seçilen process kesilmeden çalışır
-        currentTime += processes[idx].burstTime;
-        processes[idx].remainingTime = 0;
-        processes[idx].completionTime = currentTime;
-        processes[idx].turnaroundTime = processes[idx].completionTime - processes[idx].arrivalTime;
-        processes[idx].waitingTime = processes[idx].turnaroundTime - processes[idx].burstTime;
+        // Secilen process kesilmeden calisir
+        Process &p = procs[idx];
+        p.start      = time;
+        p.completion = time + p.burst;
+        p.turnaround = p.completion - p.arrival;
+        p.waiting    = p.turnaround - p.burst;
+        p.response   = p.start - p.arrival;
 
+        res.gantt.push_back({p.pid, p.start, p.completion});
+        time = p.completion;
         done[idx] = true;
-        completed++;
-        result.push_back(processes[idx]);
+        ++completed;
     }
 
-    return result;
+    res.processes = procs;
+    computeMetrics(res);
+    return res;
 }

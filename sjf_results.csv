@@ -1,0 +1,5 @@
+algorithm,pid,arrival,burst,completion,turnaround,waiting
+SJF,P1,0,7,7,7,0
+SJF,P3,4,1,8,4,3
+SJF,P2,2,4,12,10,6
+SJF,P4,5,4,16,11,7

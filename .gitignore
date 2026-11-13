@@ -1,3 +1,26 @@
+# Derleme ciktilari
 scheduler
+run_tests
 *.o
+*.obj
 *.exe
+*.pdb
+*.ilk
+
+# Visual Studio / CMake
+.vs/
+build/
+out/
+x64/
+Debug/
+Release/
+*.user
+*.suo
+CMakeSettings.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Programin urettigi sonuclar (ornekleri docs/ornek_cikti/ icinde)
+output/

@@ -3,6 +3,7 @@
 
 #include "process.h"
 #include <vector>
+#include <iostream>
 
 // Her algoritma bu imzayi kullanir. Girdi kopya olarak alinir,
 // boylece ayni process listesi tum algoritmalara verilebilir.
@@ -12,9 +13,13 @@ SchedulingResult runSJF(std::vector<Process> procs);                     // Kisi
 SchedulingResult runRoundRobin(std::vector<Process> procs, int quantum); // Kisi 3
 SchedulingResult runPriority(std::vector<Process> procs);                // Kisi 4
 
+// Ek (preemptive) algoritmalar - src/preemptive.cpp
+SchedulingResult runSRTF(std::vector<Process> procs);                    // SJF'nin preemptive hali
+SchedulingResult runPriorityPreemptive(std::vector<Process> procs);      // Priority'nin preemptive hali
+
 // Ortak yardimci fonksiyonlar (metrics.cpp)
 void computeMetrics(SchedulingResult &res);
-void printResult(const SchedulingResult &res);
-void printComparison(const std::vector<SchedulingResult> &results);
+void printResult(const SchedulingResult &res, std::ostream &os = std::cout);
+void printComparison(const std::vector<SchedulingResult> &results, std::ostream &os = std::cout);
 
 #endif

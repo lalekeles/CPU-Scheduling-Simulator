@@ -1,0 +1,20 @@
+Algorithm,PID,Start,End
+FCFS,P1,0,24
+FCFS,P2,24,27
+FCFS,P3,27,30
+SJF,P2,0,3
+SJF,P3,3,6
+SJF,P1,6,30
+SRTF,P2,0,3
+SRTF,P3,3,6
+SRTF,P1,6,30
+Round Robin (q=4),P1,0,4
+Round Robin (q=4),P2,4,7
+Round Robin (q=4),P3,7,10
+Round Robin (q=4),P1,10,30
+Priority,P2,0,3
+Priority,P3,3,6
+Priority,P1,6,30
+Priority (Preemptive),P2,0,3
+Priority (Preemptive),P3,3,6
+Priority (Preemptive),P1,6,30

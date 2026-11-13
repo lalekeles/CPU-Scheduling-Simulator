@@ -1,0 +1,124 @@
+CPU Scheduling Simulator - Rapor
+
+===== FCFS =====
+PID   Arrival  Burst  Completion Waiting  Turnaround  Response 
+P1    0        24     24         0        24          0        
+P2    0        3      27         24       27          24       
+P3    0        3      30         27       30          27       
+
+Gantt Chart:
+| P1 | P2 | P3 |
+0     24   27   30
+
+Avg Waiting Time    : 17.00
+Avg Turnaround Time : 27.00
+Avg Response Time   : 17.00
+CPU Utilization     : 100.00 %
+Throughput          : 0.10 process/zaman birimi
+Context Switches    : 2
+Toplam Sure         : 30
+
+===== SJF =====
+PID   Arrival  Burst  Completion Waiting  Turnaround  Response 
+P1    0        24     30         6        30          6        
+P2    0        3      3          0        3           0        
+P3    0        3      6          3        6           3        
+
+Gantt Chart:
+| P2 | P3 | P1 |
+0     3    6    30
+
+Avg Waiting Time    : 3.00
+Avg Turnaround Time : 13.00
+Avg Response Time   : 3.00
+CPU Utilization     : 100.00 %
+Throughput          : 0.10 process/zaman birimi
+Context Switches    : 2
+Toplam Sure         : 30
+
+===== SRTF =====
+PID   Arrival  Burst  Completion Waiting  Turnaround  Response 
+P1    0        24     30         6        30          6        
+P2    0        3      3          0        3           0        
+P3    0        3      6          3        6           3        
+
+Gantt Chart:
+| P2 | P3 | P1 |
+0     3    6    30
+
+Avg Waiting Time    : 3.00
+Avg Turnaround Time : 13.00
+Avg Response Time   : 3.00
+CPU Utilization     : 100.00 %
+Throughput          : 0.10 process/zaman birimi
+Context Switches    : 2
+Toplam Sure         : 30
+
+===== Round Robin (q=4) =====
+PID   Arrival  Burst  Completion Waiting  Turnaround  Response 
+P1    0        24     30         6        30          0        
+P2    0        3      7          4        7           4        
+P3    0        3      10         7        10          7        
+
+Gantt Chart:
+| P1 | P2 | P3 | P1 |
+0     4    7    10   30
+
+Avg Waiting Time    : 5.67
+Avg Turnaround Time : 15.67
+Avg Response Time   : 3.67
+CPU Utilization     : 100.00 %
+Throughput          : 0.10 process/zaman birimi
+Context Switches    : 3
+Toplam Sure         : 30
+
+===== Priority =====
+PID   Arrival  Burst  Completion Waiting  Turnaround  Response 
+P1    0        24     30         6        30          6        
+P2    0        3      3          0        3           0        
+P3    0        3      6          3        6           3        
+
+Gantt Chart:
+| P2 | P3 | P1 |
+0     3    6    30
+
+Avg Waiting Time    : 3.00
+Avg Turnaround Time : 13.00
+Avg Response Time   : 3.00
+CPU Utilization     : 100.00 %
+Throughput          : 0.10 process/zaman birimi
+Context Switches    : 2
+Toplam Sure         : 30
+
+===== Priority (Preemptive) =====
+PID   Arrival  Burst  Completion Waiting  Turnaround  Response 
+P1    0        24     30         6        30          6        
+P2    0        3      3          0        3           0        
+P3    0        3      6          3        6           3        
+
+Gantt Chart:
+| P2 | P3 | P1 |
+0     3    6    30
+
+Avg Waiting Time    : 3.00
+Avg Turnaround Time : 13.00
+Avg Response Time   : 3.00
+CPU Utilization     : 100.00 %
+Throughput          : 0.10 process/zaman birimi
+Context Switches    : 2
+Toplam Sure         : 30
+
+===== KARSILASTIRMA =====
+Algoritma               Avg Waiting   Avg Turnaround  Avg Response  CPU %     CtxSw     
+FCFS                    17.00         27.00           17.00         100.00    2         
+SJF                     3.00          13.00           3.00          100.00    2         
+SRTF                    3.00          13.00           3.00          100.00    2         
+Round Robin (q=4)       5.67          15.67           3.67          100.00    3         
+Priority                3.00          13.00           3.00          100.00    2         
+Priority (Preemptive)   3.00          13.00           3.00          100.00    2         
+
+En iyi (en dusuk) degerler:
+  Waiting Time    : SJF, SRTF, Priority, Priority (Preemptive)
+  Turnaround Time : SJF, SRTF, Priority, Priority (Preemptive)
+  Response Time   : SJF, SRTF, Priority, Priority (Preemptive)
+  Context Switch  : FCFS, SJF, SRTF, Priority, Priority (Preemptive)

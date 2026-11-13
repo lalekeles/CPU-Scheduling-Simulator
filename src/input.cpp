@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <limits>
+#include <cstdlib>
 
 // Gecerli bir tam sayi (minValue'dan buyuk veya esit) okuyana kadar tekrar sorar.
 static int readInt(const std::string &prompt, int minValue) {
@@ -9,9 +10,10 @@ static int readInt(const std::string &prompt, int minValue) {
     while (true) {
         std::cout << prompt;
         if (std::cin >> value && value >= minValue) return value;
+        if (std::cin.eof()) { std::cout << "\nGirdi sonlandi.\n"; std::exit(1); }  // Ctrl+Z / Ctrl+D ile sonsuz donguyu onle
         std::cout << "  Gecersiz deger! En az " << minValue << " olmali.\n";
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
     }
 }
 

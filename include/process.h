@@ -40,7 +40,17 @@ struct SchedulingResult {
     double avgTurnaround;
     double avgResponse;
 
-    SchedulingResult() : avgWaiting(0), avgTurnaround(0), avgResponse(0) {}
+    // computeMetrics() tarafindan Gantt chart'tan hesaplanan ek olcumler
+    int totalTime;          // Simulasyonun bittigi an
+    int idleTime;           // CPU'nun bos kaldigi toplam sure
+    int contextSwitches;    // Process'ler arasi gecis sayisi
+    double cpuUtilization;  // Yuzde (busy / totalTime * 100)
+    double throughput;      // Birim zamanda biten process sayisi
+
+    SchedulingResult()
+        : avgWaiting(0), avgTurnaround(0), avgResponse(0),
+          totalTime(0), idleTime(0), contextSwitches(0),
+          cpuUtilization(0), throughput(0) {}
 };
 
 #endif

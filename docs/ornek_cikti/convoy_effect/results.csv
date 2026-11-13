@@ -1,0 +1,19 @@
+Algorithm,PID,Arrival,Burst,Priority,Start,Completion,WaitingTime,TurnaroundTime,ResponseTime
+FCFS,P1,0,24,3,0,24,0,24,0
+FCFS,P2,0,3,1,24,27,24,27,24
+FCFS,P3,0,3,2,27,30,27,30,27
+SJF,P1,0,24,3,6,30,6,30,6
+SJF,P2,0,3,1,0,3,0,3,0
+SJF,P3,0,3,2,3,6,3,6,3
+SRTF,P1,0,24,3,6,30,6,30,6
+SRTF,P2,0,3,1,0,3,0,3,0
+SRTF,P3,0,3,2,3,6,3,6,3
+Round Robin (q=4),P1,0,24,3,0,30,6,30,0
+Round Robin (q=4),P2,0,3,1,4,7,4,7,4
+Round Robin (q=4),P3,0,3,2,7,10,7,10,7
+Priority,P1,0,24,3,6,30,6,30,6
+Priority,P2,0,3,1,0,3,0,3,0
+Priority,P3,0,3,2,3,6,3,6,3
+Priority (Preemptive),P1,0,24,3,6,30,6,30,6
+Priority (Preemptive),P2,0,3,1,0,3,0,3,0
+Priority (Preemptive),P3,0,3,2,3,6,3,6,3

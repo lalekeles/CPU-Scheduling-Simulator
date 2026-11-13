@@ -1,0 +1,7 @@
+Algorithm,AvgWaitingTime,AvgTurnaroundTime,AvgResponseTime,CPUUtilization,ContextSwitches,TotalTime,Throughput
+FCFS,8.20,14.00,8.20,100.00,4,29,0.1724
+SJF,7.40,13.20,7.40,100.00,4,29,0.1724
+SRTF,5.80,11.60,3.40,100.00,6,29,0.1724
+Round Robin (q=4),11.00,16.80,4.60,100.00,8,29,0.1724
+Priority,7.40,13.20,7.40,100.00,4,29,0.1724
+Priority (Preemptive),6.20,12.00,4.80,100.00,6,29,0.1724

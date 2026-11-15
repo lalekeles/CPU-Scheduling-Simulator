@@ -30,7 +30,6 @@ SchedulingResult runSJF(std::vector<Process> procs) {
         if (idx == -1) {
             int nextArrival = INT_MAX;
             for (int i = 0; i < n; ++i)
-
                 if (!done[i] && procs[i].arrival < nextArrival) nextArrival = procs[i].arrival;
             res.gantt.push_back({-1, time, nextArrival});
             time = nextArrival;

@@ -2,7 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <limits>
-#include <cstdlib>
+#include <random>
+#include <chrono>
 
 // Gecerli bir tam sayi (minValue'dan buyuk veya esit) okuyana kadar tekrar sorar.
 static int readInt(const std::string &prompt, int minValue) {
@@ -10,10 +11,9 @@ static int readInt(const std::string &prompt, int minValue) {
     while (true) {
         std::cout << prompt;
         if (std::cin >> value && value >= minValue) return value;
-        if (std::cin.eof()) { std::cout << "\nGirdi sonlandi.\n"; std::exit(1); }  // Ctrl+Z / Ctrl+D ile sonsuz donguyu onle
         std::cout << "  Gecersiz deger! En az " << minValue << " olmali.\n";
         std::cin.clear();
-        std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 }
 
@@ -48,4 +48,20 @@ bool readProcessesFromFile(const std::string &filename, std::vector<Process> &ou
     }
     out = tmp;
     return true;
+}
+
+// Her calistirmada farkli tohumla rastgele process uretir.
+std::vector<Process> generateRandomProcesses(int n) {
+    std::random_device rd;
+    unsigned seed = rd() ^ static_cast<unsigned>(
+        std::chrono::high_resolution_clock::now().time_since_epoch().count());
+    std::mt19937 gen(seed);
+    std::uniform_int_distribution<int> arrivalDist(0, 10);
+    std::uniform_int_distribution<int> burstDist(1, 9);
+    std::uniform_int_distribution<int> priorityDist(1, 5);
+
+    std::vector<Process> procs;
+    for (int i = 0; i < n; i++)
+        procs.push_back(Process(i + 1, arrivalDist(gen), burstDist(gen), priorityDist(gen)));
+    return procs;
 }

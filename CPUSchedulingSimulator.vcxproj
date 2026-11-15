@@ -46,18 +46,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\export.cpp" />
     <ClCompile Include="src\fcfs.cpp" />
     <ClCompile Include="src\input.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\metrics.cpp" />
-    <ClCompile Include="src\preemptive.cpp" />
     <ClCompile Include="src\priority.cpp" />
     <ClCompile Include="src\round_robin.cpp" />
     <ClCompile Include="src\sjf.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\export.h" />
     <ClInclude Include="include\input.h" />
     <ClInclude Include="include\process.h" />
     <ClInclude Include="include\scheduler.h" />
